@@ -1,0 +1,8 @@
+{
+  "name": "alexander/city-bike",
+  "autoload": {
+    "psr-4": {
+      "Alexander\\CityBike\\": "src/"
+    }
+  }
+}
