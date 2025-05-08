@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 role="header" class="header">
-      <span>Welcome to City Bike App!</span>
+      <span>Welcome to City Bike!</span>
     </h1>
     <p class="text">
       <span>

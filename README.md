@@ -1,4 +1,4 @@
-# City Bike App
+# City Bike
 
 This project was created as a pre-assignment for the [Solita Dev Academy](https://github.com/solita/dev-academy-2022-fall-exercise).
 
