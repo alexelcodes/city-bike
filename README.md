@@ -1,8 +1,13 @@
 # City Bike
 
+[![PHP](https://img.shields.io/badge/PHP-8.x-blue?logo=php)](https://www.php.net/)
+[![Composer](https://img.shields.io/badge/Composer-latest-orange?logo=composer)](https://getcomposer.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-LTS-green?logo=node.js)](https://nodejs.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.x-blue?logo=mysql)](https://www.mysql.com/)
+
 This project was created as a pre-assignment for the [Solita Dev Academy](https://github.com/solita/dev-academy-2022-fall-exercise).
 
-This web application displays information about bicycle stations and journeys made with city bikes in the Helsinki Capital area. The frontend was created with Vue.js and the backend with PHP and MySQL. The application includes automated tests for both the frontend (with Cypress) and the backend (with PHPUnit).
+This web application displays information about bicycle stations and journeys made with city bikes in the Helsinki Capital area. The frontend was created with Vue.js and the backend with PHP and MySQL.
 
 #
 
@@ -15,97 +20,163 @@ This web application displays information about bicycle stations and journeys ma
 <p align="center">
     <a href="#prerequisites">Prerequisites</a>
     ·
-    <a href="#running-the-backend">Backend</a>
+    <a href="#backend-setup-without-docker">Backend</a>
     ·
     <a href="#running-the-frontend">Frontend</a>
     ·
     <a href="#data-import">Data import</a>
-    ·
-    <a href="#testing">Testing</a>
     ·
     <a href="#features">Features</a>
     ·
     <a href="#screenshots">Screenshots</a>
   </p>
 
-## Getting Started
+## 🛠️ Setup
 
-### Prerequisites
+### 1. Prerequisites
 
-- Node.js 16.15.0
-- Docker 23.0.5
+Make sure the following tools are installed on your system:
 
-### Installation
-
-### Running the backend
-
-1. Clone the repository: `git clone https://github.com/kot-alex/city-bike.git`
-2. Navigate to the project directory: `cd city-bike`
-3. Build and start the backend using docker-compose: `docker compose up -d`
-4. The server runs at `http://localhost:8080`
-
-### Running the frontend
-
-1. Navigate to the frontend directory: `cd city-bike/frontend`
-2. Install the required packages: `npm install`
-3. Run the development server: `npm run dev`
-4. Access the application in your web browser at `http://localhost:5173`
-
-### Data import
-
-1. Make sure that the backend is running in a docker container
-2. Open the CLI in the docker container: `docker exec -it city-bike-backend-1 /bin/bash`
-3. To import data with stations, run: `php cli.php stations:import stations.csv`
-4. To import data with trips from the first file (`trips-1.csv`), run: `php cli.php trips:import trips-1.csv`
-5. To import data with trips from the second file (`trips-2.csv`), run: `php cli.php trips:import trips-2.csv`
-6. To import data with trips from the third file (`trips-3.csv`), run: `php cli.php trips:import trips-3.csv`
-
-Please be patient as the data import process may take some time. Importing trip data takes about 5-7 minutes for each file. However, you can continue to use the app during the import process!
-
-### Testing
-
-#### Frontend (Cypress)
-
-1. Make sure that the app is running at `http://localhost:5173`
-2. Navigate to the frontend directory: `cd city-bike/frontend`
-3. Run `npm run test` to run the Cypress tests
-
-#### Backend (PHPUnit)
-
-1. Make sure that the backend is running in docker container
-2. Open the cli in the docker container: `docker exec -it city-bike-backend-1 /bin/bash`
-3. Run `composer test` to run the PHPUnit tests
-
-## Technologies Used
-
-- Vue.js 3
-- Leaflet (for the map)
-- Axios (for API calls)
-- PHP 8.0
+- PHP 8.x
+- Composer
+- Node.js and npm
 - MySQL
-- Composer (for PHP package management)
-- Symfony Console (for building cli app in PHP)
-- Cypress (for e2e testing)
-- PHPUnit (for backend testing)
 
-I chose PHP and MySQL for the backend of this project because I had previous experience working with them in my past projects. However, I wanted to challenge myself and improve my skills, so I decided to use Vue.js for the frontend, even though I had only a limited experience with it before.
+Check their availability:
 
-In addition, I took this project as an opportunity to explore new tools and technologies. I experimented with Cypress for end-to-end testing and Docker for containerization, both of which were new to me. This allowed me to gain hands-on experience and broaden my skill set.
+```bash
+php --version
+composer --version
+node --version
+npm --version
+mysql --version
+```
 
-## Features
+Ensure that MySQL server is running. On macOS, you can start it with:
 
-- Data import from the CSV files to the MySQL database
-- Data validation before importing
-- Station list display (pagination, ordering by column, searching)
-- Possibility to add new city bike stations
-- Journey list display (pagination, ordering by column, searching)
-- Possibility to add new journeys
-- Single station display:
+```bash
+brew services start mysql
+```
+
+Or use another method appropriate for your OS.
+
+### 2. Clone the repository
+
+```bash
+git clone <repository-url>
+cd city-bike
+```
+
+### 3. Setup the database
+
+1. Navigate to the `data` directory and unzip the database:
+
+   ```bash
+   cd data
+   unzip citybike.zip
+   ```
+
+2. Open MySQL CLI:
+
+   ```bash
+   mysql -u root -p
+   ```
+
+3. Inside MySQL, create the database:
+
+   ```sql
+   DROP DATABASE IF EXISTS citybike;
+   CREATE DATABASE citybike CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   exit;
+   ```
+
+4. Import the SQL dump:
+
+   ```bash
+   mysql -u root -p citybike < citybike.sql
+   ```
+
+5. (Optional) Verify the import:
+
+   ```bash
+   mysql -u root -p
+   USE citybike;
+   SHOW TABLES;
+   SELECT COUNT(*) FROM stations;
+   SELECT COUNT(*) FROM trips;
+   exit;
+   ```
+
+### 4. Install backend dependencies
+
+```bash
+cd ../backend
+composer install
+```
+
+### 5. Install frontend dependencies
+
+```bash
+cd ../frontend
+npm install
+```
+
+### 6. Start the application
+
+In development, you can run the backend and frontend locally using two terminals:
+
+- Start the frontend development server:
+
+  ```bash
+  cd frontend
+  npm run dev
+  ```
+
+  The frontend will be available at [http://localhost:5173](http://localhost:5173)
+
+- Start the PHP backend server:
+
+  ```bash
+  php -S localhost:8080 -t backend/src
+  ```
+
+  Make sure that the backend is properly configured to handle requests.
+  Alternatively, for local development and future deployment, you may route API calls through a file like `frontend/public/api.php` which acts as a unified API entry point.
+
+## 🧰 Technologies Used
+
+- [Vue.js 3](https://vuejs.org/) – Frontend framework
+- [Leaflet](https://leafletjs.com/) – Interactive map rendering
+- [Axios](https://axios-http.com/) – HTTP client for API communication
+- [PHP 8.0+](https://www.php.net/) – Backend logic
+- [MySQL](https://www.mysql.com/) – Relational database
+- [Composer](https://getcomposer.org/) – PHP dependency management
+
+This project combines a Vue.js frontend and a PHP/MySQL backend. The goal was to display and manage city bike journeys and stations in the Helsinki area.
+
+I had prior experience with PHP and MySQL, which helped build the backend efficiently. For the frontend, I used Vue.js to strengthen my modern JavaScript framework skills. Integrating Axios and Leaflet enabled interactive map-based features and smooth API communication.
+
+Through this project, I gained hands-on experience building a full-stack web application with a REST-like API, structured backend logic, and modular frontend components.
+
+## ✨ Features
+
+- Preloaded MySQL database dump for easy setup
+- Display list of stations with:
+  - Pagination
+  - Sorting by columns
+  - Search functionality
+- Display list of journeys with:
+  - Pagination
+  - Sorting by columns
+  - Search functionality
+- Add new city bike stations
+- Add new journeys
+- View detailed information for a single station:
   - Total number of journeys starting from the station
   - Total number of journeys ending at the station
-  - Station location on the map
-  - The average distance of a journey starting from the station
-  - The average distance of a journey ending at the station
+  - Average distance of journeys starting from the station
+  - Average distance of journeys ending at the station
+  - Station location displayed on the map (Leaflet)
 
 ## Screenshots
 
