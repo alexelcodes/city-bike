@@ -1,5 +1,6 @@
 # City Bike
 
+[![Vue.js](https://img.shields.io/badge/Vue.js-3.x-brightgreen?logo=vue.js)](https://vuejs.org/)
 [![PHP](https://img.shields.io/badge/PHP-8.x-blue?logo=php)](https://www.php.net/)
 [![Composer](https://img.shields.io/badge/Composer-latest-orange?logo=composer)](https://getcomposer.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-LTS-green?logo=node.js)](https://nodejs.org/)
