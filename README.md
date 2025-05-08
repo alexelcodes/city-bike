@@ -123,25 +123,24 @@ npm install
 
 ### 6. Start the application
 
-In development, you can run the backend and frontend locally using two terminals:
+In development, run the backend and frontend in two separate terminals:
 
-- Start the frontend development server:
+- Start the **frontend** dev server:
 
   ```bash
   cd frontend
   npm run dev
   ```
 
-  The frontend will be available at [http://localhost:5173](http://localhost:5173)
+  The app will be available at [http://localhost:5173](http://localhost:5173)
 
-- Start the PHP backend server:
+- Start the **PHP backend** server (from the root of the project):
 
   ```bash
-  php -S localhost:8080 -t backend/src
+  php -S localhost:8080 frontend/public/api.php
   ```
 
-  Make sure that the backend is properly configured to handle requests.
-  Alternatively, for local development and future deployment, you may route API calls through a file like `frontend/public/api.php` which acts as a unified API entry point.
+  This serves as the unified entry point for API requests in local development.
 
 ## 🧰 Technologies Used
 
