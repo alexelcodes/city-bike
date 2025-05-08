@@ -8,8 +8,8 @@
 A full-stack web application for exploring city bike stations and trips in the Helsinki Capital area. Built with Vue.js (frontend), PHP (backend), and MySQL.
 
 <p align="center">
-  <a href="https://citybike.space" style="display:inline-block;padding:0.6em 1.2em;background-color:#007BFF;color:white;text-decoration:none;border-radius:5px;font-weight:bold;">
-    <b style="filter: brightness(0) invert(1);">🚲</b> Visit Website
+  <a href="https://citybike.space">
+    <img src="https://img.shields.io/badge/🚴%20Visit-City%20Bike-blue?style=flat&logo=googlemaps&logoColor=white" alt="Visit City Bike" width="160">
   </a>
 </p>
 
