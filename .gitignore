@@ -1,3 +1,19 @@
+# PHP dependencies
 vendor/
+
+# Node.js dependencies
 node_modules/
+
+# Vue build output
 dist/
+
+# Environment and config files
+.env
+.env.*
+
+# Log files
+*.log
+
+# IDE and OS files
+.DS_Store
+.vscode/
