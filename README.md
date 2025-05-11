@@ -10,7 +10,7 @@ A full-stack web application for exploring city bike stations and trips in the H
 
 <p align="center">
   <a href="https://citybike.space">
-    <img src="https://img.shields.io/badge/🚴%20Visit-City%20Bike-blue?style=flat&logo=googlemaps&logoColor=white" alt="Visit City Bike" width="160">
+    <img src="https://img.shields.io/badge/Visit-🚴%20City%20Bike-blue?style=flat&logo=googlemaps&logoColor=white" alt="Visit City Bike" width="160">
   </a>
 </p>
 
@@ -139,6 +139,12 @@ App available at [http://localhost:5173](http://localhost:5173)
 - **MySQL 8.x** – Database
 - **Composer** – PHP dependency manager
 
+## Architecture
+
+The diagram below illustrates the overall structure of the application, including interactions between the frontend, backend, and database.
+
+![Architecture](assets/architecture.png)
+
 ## Features
 
 - Preloaded MySQL dump
@@ -151,19 +157,19 @@ App available at [http://localhost:5173](http://localhost:5173)
 
 ### Station List View
 
-![Stations List View](media/stations.png)
+![Stations List View](assets/stations.png)
 
 ### Trip List View
 
-![Trip List View](media/trips.png)
+![Trip List View](assets/trips.png)
 
 ### Single Station View
 
-![Single Station View](media/station.png)
+![Single Station View](assets/station.png)
 
 ### New Trip Creation
 
-![New Trip Creation](media/new-trip.png)
+![New Trip Creation](assets/new-trip.png)
 
 ## Acknowledgments
 
